@@ -10,6 +10,7 @@ keywords = ["file-transfer", "local-network"]
 categories = ["command-line-utilities"]
 
 [dependencies]
+chacha20poly1305 = "0.10.1"
 thiserror = "2.0.17"
 
 [profile.dev]
