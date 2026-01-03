@@ -1,0 +1,20 @@
+# Build artifacts
+/target/
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+
+# Rust tools
+clippy_cache/
+tarpaulin-report.html
+cobertura.xml
+*.profdata
+
+# Logs
+*.log
+*.log.*
+logs/
