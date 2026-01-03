@@ -11,7 +11,10 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 chacha20poly1305 = "0.10.1"
+gethostname = "1.1.0"
+hex = "0.4.3"
 hkdf = "0.12.4"
+mdns-sd = "0.17.1"
 sha2 = "0.10.9"
 thiserror = "2.0.17"
 
