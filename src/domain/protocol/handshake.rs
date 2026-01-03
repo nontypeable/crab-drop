@@ -1,5 +1,8 @@
-use crate::domain::crypto::{AeadCipher, CryptoError, KeyDerivation, Nonce};
-use crate::domain::protocol::messages::{HandshakeInit, HandshakeResponse};
+use crate::domain::protocol::message::{HandshakeInit, HandshakeResponse};
+use crate::domain::{
+    crypto::{AeadCipher, KeyDerivation, Nonce},
+    errors::CryptoError,
+};
 
 pub struct Handshake<'a, A: AeadCipher, K: KeyDerivation> {
     pub aead: &'a A,

@@ -1,5 +1,5 @@
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Nonce([u8; 12]);
+pub struct Nonce(pub [u8; 12]);
 
 impl Nonce {
     pub fn new(bytes: [u8; 12]) -> Self {
