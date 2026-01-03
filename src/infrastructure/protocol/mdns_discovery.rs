@@ -15,7 +15,7 @@ impl MdnsDiscovery {
 
 impl Discovery for MdnsDiscovery {
     fn advertise(&self, service_name: &str, hash: &[u8]) {
-        let service_type = format!("{}._udp.local.", service_name);
+        let service_type = format!("_{}._udp.local.", service_name);
         let hash = hex::encode(hash);
         let txt_props: &[(&str, &str)] = &[("hash", &hash)];
         let hostname = format!("{}.local.", gethostname::gethostname().to_string_lossy());
@@ -32,7 +32,7 @@ impl Discovery for MdnsDiscovery {
     fn discover(&self, service_name: &str, hash: &[u8]) -> Vec<Peer> {
         let mut peers = Vec::new();
 
-        let service_type = format!("{}._udp.local.", service_name);
+        let service_type = format!("_{}._udp.local.", service_name);
         let receiver = self.daemon.browse(&service_type).expect("failed to browse");
 
         let timeout = Duration::from_secs(3);
