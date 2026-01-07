@@ -1,6 +1,9 @@
 use crate::domain::protocol::discovery::{Discovery, Peer};
+use local_ip_address::local_ip;
 use mdns_sd::{ServiceDaemon, ServiceEvent, ServiceInfo};
 use std::time::Duration;
+
+pub const SERVICE_PORT: u16 = 65432;
 
 pub struct MdnsDiscovery {
     daemon: ServiceDaemon,
@@ -19,9 +22,9 @@ impl Discovery for MdnsDiscovery {
         let hash = hex::encode(hash);
         let txt_props: &[(&str, &str)] = &[("hash", &hash)];
         let hostname = format!("{}.local.", gethostname::gethostname().to_string_lossy());
-        let ip = "0.0.0.0";
+        let ip = local_ip().expect("failed to get ip address");
 
-        let info = ServiceInfo::new(&service_type, service_name, &hostname, ip, 0, txt_props)
+        let info = ServiceInfo::new(&service_type, service_name, &hostname, ip, SERVICE_PORT, txt_props)
             .expect("invalid mdns service info");
 
         self.daemon
