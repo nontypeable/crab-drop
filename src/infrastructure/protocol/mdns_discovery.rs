@@ -24,8 +24,15 @@ impl Discovery for MdnsDiscovery {
         let hostname = format!("{}.local.", gethostname::gethostname().to_string_lossy());
         let ip = local_ip().expect("failed to get ip address");
 
-        let info = ServiceInfo::new(&service_type, service_name, &hostname, ip, SERVICE_PORT, txt_props)
-            .expect("invalid mdns service info");
+        let info = ServiceInfo::new(
+            &service_type,
+            service_name,
+            &hostname,
+            ip,
+            SERVICE_PORT,
+            txt_props,
+        )
+        .expect("invalid mdns service info");
 
         self.daemon
             .register(info)
